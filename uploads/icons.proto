@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package uploads;
+
+message UploadIconReq {
+    bytes data
+}
+
+message UploadIconResp {
+    string hash
+}

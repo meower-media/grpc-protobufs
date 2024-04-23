@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package uploads;
+
+message BlockFileReq {
+    string hash
+    bool erase
+}
+
+message UnblockFileReq {
+    string hash
+}

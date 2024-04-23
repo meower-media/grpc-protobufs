@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package server;
+
+message CheckAuthTokenReq {
+    string token
+}
+
+message CheckAuthTokenResp {
+    bool valid
+    optional string session_id
+    optional string user_id
+}

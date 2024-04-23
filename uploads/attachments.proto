@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package uploads;
+
+message ClaimAttachmentReq {
+    string id
+}
+
+message ClaimAttachmentResp {
+    bytes data
+}
+
+message DeleteAttachmentReq {
+    string id
+}

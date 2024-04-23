@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package uploads;
+
+import "google/protobuf/empty.proto";
+import "auth.proto";
+import "admin.proto";
+
+service Uploads {
+    // Upload an icon & get its ID.
+    rpc UploadIcon(UploadIconReq) returns (UploadIconResp)
+
+    // Claim & get details about an attachment by its ID.
+    rpc ClaimAttachment(ClaimAttachmentReq) returns (ClaimAttachmentResp)
+
+    // Delete an attachment by its ID.
+    rpc DeleteAttachment(DeleteAttachmentReq) returns (google.protobuf.Empty)
+
+    // Block file by its hash.
+    rpc BlockFile(BlockFileReq) returns (google.protobuf.Empty)
+
+    // Unblock file by its hash.
+    rpc UnblockFile(UnblockFileReq) returns (google.protobuf.Empty)
+}
