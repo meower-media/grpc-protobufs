@@ -2,11 +2,13 @@ syntax = "proto3";
 
 package uploads;
 
+option go_package = "./";
+
 message BlockFileReq {
-    string hash
-    bool erase
+    string hash = 1;
+    bool erase = 2;
 }
 
 message UnblockFileReq {
-    string hash
+    string hash = 1;
 }

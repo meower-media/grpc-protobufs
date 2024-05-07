@@ -2,10 +2,12 @@ syntax = "proto3";
 
 package uploads;
 
+option go_package = "./";
+
 message UploadIconReq {
-    bytes data
+    bytes data = 1;
 }
 
 message UploadIconResp {
-    string hash
+    string hash = 1;
 }

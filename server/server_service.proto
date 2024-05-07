@@ -2,26 +2,11 @@ syntax = "proto3";
 
 package server;
 
-import "google/protobuf/empty.proto";
+option go_package = "./";
+
 import "auth.proto";
-import "admin.proto";
 
 service Server {
-    // Auth
-
     // Check & get details about a user authorization token.
-    rpc CheckToken(CheckAuthTokenReq) returns (CheckAuthTokenResp)
-
-
-    // Admin
-
-    // Append text to an admin note, if it exists.
-    // Otherwise, create a new admin note with the provided text.
-    rpc AppendAdminNote(AppendAdminNoteReq) returns (google.protobuf.Empty)
-
-    // Add a strike to a user.
-    rpc AddUserStrikeReq(Strike) returns (google.protobuf.Empty)
-
-    // Get which restrictions a user currently has out of the provided restrictions.
-    rpc CheckUserRestrictions(CheckUserRestrictionsReq) returns (CheckUserRestrictionsResp)
+    rpc CheckToken(CheckAuthTokenReq) returns (CheckAuthTokenResp);
 }

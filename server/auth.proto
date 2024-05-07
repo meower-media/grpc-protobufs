@@ -2,12 +2,14 @@ syntax = "proto3";
 
 package server;
 
+option go_package = "./";
+
 message CheckAuthTokenReq {
-    string token
+    string token = 1;
 }
 
 message CheckAuthTokenResp {
-    bool valid
-    optional string session_id
-    optional string user_id
+    bool valid = 1;
+    optional string session_id = 2;
+    optional string user_id = 3;
 }
