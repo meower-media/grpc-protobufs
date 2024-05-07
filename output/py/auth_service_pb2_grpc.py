@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import auth_pb2 as auth__pb2
+import auth_service_pb2 as auth__service__pb2
 
 GRPC_GENERATED_VERSION = '1.63.0'
 GRPC_VERSION = grpc.__version__
@@ -20,7 +20,7 @@ except ImportError:
 if _version_not_supported:
     warnings.warn(
         f'The grpc package installed is at version {GRPC_VERSION},'
-        + f' but the generated code in server_service_pb2_grpc.py depends on'
+        + f' but the generated code in auth_service_pb2_grpc.py depends on'
         + f' grpcio>={GRPC_GENERATED_VERSION}.'
         + f' Please upgrade your grpc module to grpcio>={GRPC_GENERATED_VERSION}'
         + f' or downgrade your generated code using grpcio-tools<={GRPC_VERSION}.'
@@ -30,7 +30,7 @@ if _version_not_supported:
     )
 
 
-class ServerStub(object):
+class AuthStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -40,13 +40,13 @@ class ServerStub(object):
             channel: A grpc.Channel.
         """
         self.CheckToken = channel.unary_unary(
-                '/server.Server/CheckToken',
-                request_serializer=auth__pb2.CheckAuthTokenReq.SerializeToString,
-                response_deserializer=auth__pb2.CheckAuthTokenResp.FromString,
+                '/auth.Auth/CheckToken',
+                request_serializer=auth__service__pb2.CheckTokenReq.SerializeToString,
+                response_deserializer=auth__service__pb2.CheckTokenResp.FromString,
                 _registered_method=True)
 
 
-class ServerServicer(object):
+class AuthServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CheckToken(self, request, context):
@@ -57,21 +57,21 @@ class ServerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_ServerServicer_to_server(servicer, server):
+def add_AuthServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CheckToken': grpc.unary_unary_rpc_method_handler(
                     servicer.CheckToken,
-                    request_deserializer=auth__pb2.CheckAuthTokenReq.FromString,
-                    response_serializer=auth__pb2.CheckAuthTokenResp.SerializeToString,
+                    request_deserializer=auth__service__pb2.CheckTokenReq.FromString,
+                    response_serializer=auth__service__pb2.CheckTokenResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'server.Server', rpc_method_handlers)
+            'auth.Auth', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Server(object):
+class Auth(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -88,9 +88,9 @@ class Server(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/server.Server/CheckToken',
-            auth__pb2.CheckAuthTokenReq.SerializeToString,
-            auth__pb2.CheckAuthTokenResp.FromString,
+            '/auth.Auth/CheckToken',
+            auth__service__pb2.CheckTokenReq.SerializeToString,
+            auth__service__pb2.CheckTokenResp.FromString,
             options,
             channel_credentials,
             insecure,
